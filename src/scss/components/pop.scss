@@ -1,0 +1,43 @@
+.pop {
+    position: fixed;
+    background-color: rgba(19, 33, 68, 0.25);
+    width: 100%;
+    left: 0px;
+    z-index: 1040;
+    height: 100vh;
+    top: 0px;
+    transition: all 1 !important;
+}
+.activity {
+    position: absolute;
+    width: 368px;
+    background: #fff;
+    right: 0px !important;
+    transition: all 1s;
+}
+.rm-368{
+    position: absolute;
+    right: -368px;
+    width: 368px;
+    transition: all 1s;
+}
+.adjuntos-pop {
+    background: #f9fafc;
+    padding: 5px;
+    border: 0.0625rem solid #e7eaf3;
+    border-radius: 5px;
+}
+.linea-pop {
+    width: 2px;
+    background: #e7eaf3;
+    height: 65%;
+    margin: auto;
+    margin-top: 8px;
+}
+.icono-activity {
+    padding: 5px;
+    background: #e7e8ec;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}

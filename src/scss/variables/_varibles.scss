@@ -1,0 +1,141 @@
+@mixin textColor($property,$color) {
+    #{$property}: #{$color};
+}
+$colors: ('primary':$primary, 'secondary':$secondary, 'info':$info, 'danger':$danger, 'warning':$warning, 'success':$success, 'dark':$dark);
+
+@each $name,$colo in $colors {
+    .text-#{$name}-default{
+        @include textColor(color,$colo)
+    }
+    .bg-#{$name}-default{
+        @include textColor(background-color,$colo)
+    }
+}
+// .text-primary-default{
+//     @include textColor(color,$primary)
+// }
+@for $i from 0 through 1000 {
+    .z-index-#{$i}{
+        z-index: $i;
+    }
+    .fz-#{$i}{
+        font-size: $i * 1px !important;
+    }
+    .w-#{$i}{
+        width: $i * 1%;
+    }
+    .w-#{$i}-px{
+        width: $i * 1px !important;
+    }
+    .hvh-#{$i}{
+        height: $i * 1vh;
+    }
+    .hminvh-#{$i}{
+        min-height: $i * 1vh;
+    }
+    .h-#{$i}{
+        height: $i * 1%;
+    }
+    .hpx-#{$i}{
+        height: $i * 1px;
+    }
+    .ml-#{$i}{
+        margin-left: $i * 1px;
+    }
+    .mr-#{$i}{
+        margin-right: $i * 1px;
+    }
+    .mt-#{$i}{
+        margin-top: $i * 1px !important;
+    }
+    .mb-#{$i}{
+        margin-bottom: $i * 1px !important;
+    }
+    .p-#{$i}{
+        padding: $i * 1px;
+    }
+    .pr-#{$i}{
+        padding-right: $i * 1px !important;
+    }
+    .pl-#{$i}{
+        padding-left: $i * 1px !important;
+    }
+    .pt-#{$i}{
+        padding-top: $i * 1px;
+    }
+    .pb-#{$i}{
+        padding-bottom: $i * 1px;
+    }
+}
+.sp{
+    padding: 0px;
+}
+a{
+    text-decoration: none !important;
+}
+.centrar {
+    display: flex;
+    align-items: center;
+}
+.pointer{
+    cursor: pointer;
+}
+.border{
+    border-color: #e7eaf3;
+    transition: all .5s;
+}
+.oculto{
+    display: none !important;
+}
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #d7dce3; 
+}
+.d-flex{
+    display: flex;
+}
+.form-control:focus{
+    background-color: transparent;
+    box-shadow: none;
+}
+@mixin sombra {
+    min-width: 15rem;
+    // background-color: #fff;
+    box-shadow: 0px 10px 40px 10px rgba(140, 152, 164, 0.175);
+    border-radius: 0.3125rem;
+    // overflow: hidden;
+}
+.card-shadow{
+    @include sombra()
+}
+.text-facebook{
+    color: $facebook;
+}
+.d-grid{
+    display: grid;
+}
+.o-hidden{
+    overflow: hidden;
+}
+.o-auto{
+    overflow: auto;
+}
+.w-max{
+    width: max-content;
+}
+.baground-login{
+    background: url('../../img/bagroud-login.svg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    position: fixed;
+}

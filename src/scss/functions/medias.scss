@@ -1,0 +1,9 @@
+@media (min-width: 1200px){
+    .navbar-vertical-aside-show-xl .navbar-vertical-aside,.navbar-vertical-fixed {
+        margin-left: 0;
+    }
+    .navbar-vertical.navbar-expand-xl {
+        -ms-flex-flow: column;
+        flex-flow: column;
+    }
+}

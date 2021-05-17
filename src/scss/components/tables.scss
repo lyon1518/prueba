@@ -1,0 +1,20 @@
+thead.MuiTableHead-root {
+    background-color: #f8fafd;
+}
+.status-table{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+} 
+.status-successfull{
+    background-color: $success;
+}
+.status-overdue{
+    background-color: $danger;
+}
+.status-pending{
+    background-color: $warning;
+}
+.text-gray,th{
+    color: #677788 !important;
+}

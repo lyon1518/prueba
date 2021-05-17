@@ -1,0 +1,53 @@
+// user-variables.scss
+// Use this to overwrite Bootstrap and Front variables
+//
+
+
+// Example of a variable override to change Front's primary color and font size
+// Remove the "//" to comment it in and see it in action!
+// $primary: red;
+// $font-size-base: 1rem;
+
+
+/* Beleff colors */
+$blf-red:    #dc2f3d !default;
+$blf-orange: #f26a29 !default;
+$blf-yellow: #fcb116 !default;
+$blf-purple: #5f53a3 !default;
+$blf-green:  #40c0be !default;
+$blf-teal:   #00a5cf !default;
+$blf-blue:   #004694 !default;
+$blf-gray:   #bfbebe !default;
+
+/* social media colors */
+$whatsapp:   #25d366 !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    /* Beleff colors */
+    "blf-red":    $blf-red,
+    "blf-orange": $blf-orange,
+    "blf-yellow": $blf-yellow,
+    "blf-purple": $blf-purple,
+    "blf-green":  $blf-green,
+    "blf-teal":   $blf-teal,
+    "blf-blue":   $blf-blue,
+    "blf-gray":   $blf-gray,
+
+    /* social media colors */
+    "whatsapp":   $whatsapp,
+  ),
+  $theme-colors
+
+);
+
+// Custom bootstrap Colors
+$link-color:                                                $blf-green !default;
+$active-color:                                              $blf-green !default;
+$active-bg-color:                                           $blf-green !default;
+$border-active-color:                                       $blf-green !default;
+$link-color:                                                $blf-green !default;
+$link-hover-color:                                          darken($link-color, 15%) !default;
+
+$yiq-contrasted-threshold:                                  160 !default;
