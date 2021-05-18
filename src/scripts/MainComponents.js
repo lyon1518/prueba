@@ -1,4 +1,17 @@
 const MainScripts = {
+    handdleActiveLateral(){
+        let body = document.querySelector('body')
+        // console.log(window.screen.width);
+        if (window.screen.width > 1100) {
+            body.classList.toggle("navbar-vertical-aside-mini-mode")
+            
+        }else{
+            body.classList.toggle("navbar-vertical-aside-closed-mode")
+            if (!body.classList.contains("navbar-vertical-aside-closed-mode")) {
+                this.handdlePop('block')
+            }
+        }
+    },
     handdlePop(data){
         let modal = document.getElementById('modal')
         modal.style.display = data

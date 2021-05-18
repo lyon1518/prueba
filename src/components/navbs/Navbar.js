@@ -6,13 +6,10 @@ import Notifications from "./pieces/Notifications";
 import DropDownUser from "./pieces/DropDownUser";
 import Icon from "./pieces/Icon";
 import Search from "./pieces/Search";
+import MainScripts from "../../scripts/MainComponents";
 
 const Navbar = () => {
     const [store] = useContext(StoreContext)
-    const handdleActive = () => {
-        let body = document.querySelector('body')
-        body.classList.toggle("navbar-vertical-aside-mini-mode")
-    }
     return (
         <header id="header" className="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
             <div className="navbar-nav-wrap">
@@ -27,7 +24,7 @@ const Navbar = () => {
 
                 <div className="navbar-nav-wrap-content-left">
                     {/* @@include("../layouts-components/navbar-vertical-aside-toggle.html") */}
-                    <button type="button" className="js-navbar-vertical-aside-toggle-invoker close mr-3" onClick={() => handdleActive()}>
+                    <button type="button" className="js-navbar-vertical-aside-toggle-invoker close mr-3" onClick={() => MainScripts.handdleActiveLateral()}>
                         <i className="tio-first-page navbar-vertical-aside-toggle-short-align">
                             <FirstPage />
                         </i>

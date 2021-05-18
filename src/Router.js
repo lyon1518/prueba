@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 // import Navbar from "./components/navbs/Navbar-index";
 import Login from "./components/contenidos/login";
 import { StoreContext } from "./store/StoreProvider";
@@ -20,9 +20,6 @@ const RouterApp = ()=>{
         return(
             <BrowserRouter>
                 <NavbarContent/>
-                
-                <Switch>
-                </Switch>
             </BrowserRouter>
         )
     }

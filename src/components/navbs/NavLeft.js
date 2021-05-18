@@ -1,6 +1,10 @@
+import { Close } from "@material-ui/icons";
 import React from "react";
+import MainScripts from "../../scripts/MainComponents";
 import ListNavLef from "../others/navbar/ListNavLef";
-
+import Help from "./pieces/Help";
+import Language from "./pieces/Language";
+import Settings from "./pieces/Settings";
 const NavLeft = (props) => {
     return (
         <aside className="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered navbar-vertical-aside-initialized">
@@ -12,8 +16,9 @@ const NavLeft = (props) => {
                             <img className="navbar-brand-logo-mini" src="@@autopath/assets/svg/logos/logo-belieff-short.svg" alt="Logo" />
                         </a>
 
-                        <button type="button" className="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
-                            <i className="tio-clear tio-lg"></i>
+                        <button type="button" className="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark"
+                            onClick={() => MainScripts.handdleActiveLateral()}>
+                            <i className="tio-clear tio-lg"><Close/></i>
                         </button>
                     </div>
 
@@ -24,15 +29,18 @@ const NavLeft = (props) => {
                     <div className="navbar-vertical-footer">
                         <ul className="navbar-vertical-footer-list">
                             <li className="navbar-vertical-footer-list-item">
+                                <Settings/>
                                 {/* @@include("../layouts-components/sidebar-builder-toggle-ghost-secondary.html") */}
                             </li>
 
                             <li className="navbar-vertical-footer-list-item">
                                 {/* @@include("../layouts-components/dropdown-help.html") */}
+                                <Help/>
                             </li>
 
                             <li className="navbar-vertical-footer-list-item">
                                 {/* @@include("../layouts-components/dropdown-language.html") */}
+                                <Language/>
                             </li>
                         </ul>
                     </div>

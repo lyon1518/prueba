@@ -48,7 +48,8 @@ const Notifications = (props) => {
                 <span className="btn-status btn-sm-status btn-status-danger"></span>
             </a>
 
-            <div onPointerLeave={()=>{MainScripts.handdleActive('notificationDropdown')}} id="notificationDropdown" className="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: '25rem',display:'none' }}>
+            <div onPointerLeave={()=>{MainScripts.handdleActive('notificationDropdown')}} id="notificationDropdown" className="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: '25rem', display:'none !important'}}>
+            {/* <div onPointerLeave={() => { MainScripts.handdleActive('appsDropdown') }} id="appsDropdown" className="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: "25rem" }}></div> */}
                 <div className="card-header">
                     <span className="card-title h4">Notifications</span>
 

@@ -24,7 +24,7 @@ const Apis = {
                             icon: <Lens className="w-6-px"/>,
                             title: 'Default',
                             separador: false,
-                            link: '/prueba',
+                            link: '/',
                             list: []
                         },
                         {
@@ -33,7 +33,7 @@ const Apis = {
                             icon: <Lens className="w-6-px"/>,
                             title: 'Alternative',
                             separador: false,
-                            link: '/prueba2',
+                            link: '/settigs',
                             list: []
                         }
                     ]
