@@ -1,4 +1,4 @@
-import Apis from "../scripts/apis";
+import Apis from "../scripts/control/Apis";
 const {activeLateral,lateral,sarch,notificacion,NavbarTop,pop,linkUrl,sesion} = Apis
 const types = {
     changeStateNavbarVertical:'changeStateNavbarVertical',

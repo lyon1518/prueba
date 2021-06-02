@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import StoreReducer, {InitialState} from "./StoreReducer";
 
 const StoreContext = createContext();
@@ -8,5 +8,8 @@ const StoreProvider = ({children})=>
         {children}
     </StoreContext.Provider>
 
-export {StoreContext}
+// export {StoreContext}
+const useStore = () => useContext(StoreContext)[0]
+const useDispatch = () => useContext(StoreContext)[1] 
+export {StoreContext, useStore, useDispatch}
 export default StoreProvider

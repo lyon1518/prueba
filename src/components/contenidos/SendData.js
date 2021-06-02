@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect } from "react";
+import Validate from "../../scripts/validty/Validation";
 import { StoreContext } from "../../store/StoreProvider";
-import Functions from "../../scripts/Functions";
+
 
 const SendData = (props)=>{
     const [store,dispatch] = useContext(StoreContext)
@@ -9,7 +10,7 @@ const SendData = (props)=>{
         const {data} = props
         switch (type) {
             case 'singIn':
-                let login = Functions.validSquemas('singIn',sesion)
+                let login = Validate.validSquemas('singIn',sesion)
                 if (login.error !== undefined) {
                     dispatch({type:'ActivePop',data:{active:true,type:'error',data:login}})
                 }else{

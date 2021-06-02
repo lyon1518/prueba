@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Route } from "react-router";
 import { Switch } from "react-router-dom";
 import { StoreContext } from "../../store/StoreProvider";
 import Settings from "../contenidos/Settings";
+import Pop from "../others/Pop";
 import Default from "../pages/dashboard/Default";
+import Foter from "./Foter";
 import Navbar from "./Navbar";
 import NavLeft from "./NavLeft";
 import NavRight from "./pieces/NavRight";
@@ -11,20 +13,21 @@ import Shadow from "./pieces/Shadow";
 
 const NavbarContent = () => {
     const [store] = useContext(StoreContext)
-    // console.log(store.lateral);
+    const [ActiveLateral,setActiveLateral] = useState(false)
     return (
         <div id="navbarContent">
-            <NavRight data={store} />
-            <Navbar />
-            <NavLeft data={store.lateral} />
+            {store.pop.active ?<Pop/>:""}
+            <NavRight data={store}/>
+            <Navbar ActiveLateral={ActiveLateral} setActiveLateral={setActiveLateral}/>
+            <NavLeft data={store.lateral} ActiveLateral={ActiveLateral}/>
             <Shadow />
             <main id="content" role="main" className="main pointer-event">
-                <div class="content container-fluid">
-                    <h1>contenidos para ver</h1>
+                <div className="content container-fluid">
                     <Switch>
                         <Route exact path='/' component={Default} />
                         <Route exact path='/settigs' component={Settings} />
                     </Switch>
+                    <Foter/>
                 </div>
             </main>
             {/* /settigs */}

@@ -1,22 +1,27 @@
 import React, { useContext, useState } from "react";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
 import SendData from "./SendData";
-import Functions from "../../scripts/Functions";
-import Apis from "../../scripts/apis";
+import Functions from "../../scripts/control/Functions";
 import { StoreContext } from "../../store/StoreProvider";
 import Pop from "../others/Pop";
+// import Validation from "../../scripts/validty/Validation";
 
 const Login = (props) => {
   const [Pass, setPass] = useState(false)
   const [ActivePop, setActivePop] = useState(false)
   const [Data, setData] = useState(false)
   const [store] = useContext(StoreContext)
+  // const handleSingIn = ()=>{
+  //   window.event.preventDefault()
+  //   console.log(Functions);
+  //   console.log(Functions.encodeType(['asd', '234'], 'expert'));
+  // }
   const handleSingIn = async() => {
     // console.log('iniciar');
     window.event.preventDefault()
     let correo = document.querySelector('#signinSrEmail')
     let pass = document.querySelector('#signupSrPassword')
-    let sesion = await Functions.signIn(correo,pass,Apis.sesion,'ErrorLogin')
+    let sesion = await Functions.signIn(correo,pass,'ErrorLogin')
     // let sesion = Functions.signIn(correo,pass,Apis.sesion,'')
     setData(sesion)
     setActivePop(true)
@@ -96,7 +101,7 @@ const Login = (props) => {
                 </div>
                 {/* <!-- End Checkbox --> */}
 
-                <button type="submit" className="btn btn-lg btn-block btn-primary" onClick={() => handleSingIn()}>Sign in</button>
+                <button type="submit" className="btn btn-lg btn-block btn-primary" onClick={() => handleSingIn()}>Inciar sesión</button>
               </form>
               {/* <!-- End Form --> */}
             </div>

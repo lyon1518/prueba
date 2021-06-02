@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Sidebar from "../../scripts/squemas";
+import Sidebar from "../../scripts/prototypes/Squemas";
 import { StoreContext } from "../../store/StoreProvider";
 import SendData from "./SendData";
 

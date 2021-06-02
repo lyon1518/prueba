@@ -23,7 +23,7 @@ const NavLeft = (props) => {
                     </div>
 
                     <div className="navbar-vertical-content">
-                        <ListNavLef data={props.data}/>
+                        <ListNavLef data={props.data} ActiveLateral={props.ActiveLateral}/>
                     </div>
 
                     <div className="navbar-vertical-footer">

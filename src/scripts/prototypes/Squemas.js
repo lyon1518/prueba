@@ -1,4 +1,5 @@
-import Functions from "./Functions";
+import Validate from "../validty/Validation";
+
 function Sidebar(active, badge, icon, title, separador, link, list, padre) {
   this.active = active;
   this.badge = badge;
@@ -21,7 +22,7 @@ Sidebar.prototype.add = function() {
   data.list = this.list
   data.padre = this.padre
   data.type = 'correctProperty'
-  return Functions.validSquemas('sidebar',data)
+  return Validate.validSquemas('sidebar',data)
 }
 Sidebar.prototype.remove = function() {
   let data = {}

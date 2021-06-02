@@ -1,5 +1,5 @@
 import { HomeOutlined, CropPortraitOutlined, Apps, LockOutlined, VisibilityOutlined, ViewQuiltOutlined, ImportContactsOutlined, LayersOutlined, Tune, FormatColorFill, AccountCircle, VerifiedUser, AssignmentReturn, DoneAll, ToggleOff, Redeem, QuestionAnswer, Lens } from "@material-ui/icons";
-import Imgs from "./Imgs";
+import Imgs from "../imgs/Imgs";
 const Apis = {
     lateral: [
         {
@@ -684,7 +684,7 @@ const Apis = {
         1:{
             name: 'Prueba',
             active: 'true',
-            id: 67980,
+            id: "67980",
         },
         2:{
             name: 'Prueba 2',

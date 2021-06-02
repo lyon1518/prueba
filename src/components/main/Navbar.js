@@ -1,5 +1,5 @@
 import { FirstPage, LastPage,SearchOutlined } from "@material-ui/icons";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StoreContext } from "../../store/StoreProvider";
 import Apps from "./pieces/Apps";
 import Notifications from "./pieces/Notifications";
@@ -7,11 +7,18 @@ import DropDownUser from "./pieces/DropDownUser";
 import Icon from "./pieces/Icon";
 import Search from "./pieces/Search";
 import MainScripts from "../../scripts/MainComponents";
+import SendData from "../contenidos/SendData";
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [store] = useContext(StoreContext)
+    const [ActivePop, setActivePop] = useState(false)
+    const handdleCompress=()=>{
+        MainScripts.handdleActiveLateral()
+        props.setActiveLateral(!props.ActiveLateral)
+    }
     return (
         <header id="header" className="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
+            <SendData type="singOut" setActivePop={setActivePop} data="" active={ActivePop}/>
             <div className="navbar-nav-wrap">
                 <div className="navbar-brand-wrapper">
                     {/* @@include("../layouts-components/navbar-logo.html") */}
@@ -24,7 +31,7 @@ const Navbar = () => {
 
                 <div className="navbar-nav-wrap-content-left">
                     {/* @@include("../layouts-components/navbar-vertical-aside-toggle.html") */}
-                    <button type="button" className="js-navbar-vertical-aside-toggle-invoker close mr-3" onClick={() => MainScripts.handdleActiveLateral()}>
+                    <button type="button" className="js-navbar-vertical-aside-toggle-invoker close mr-3" onClick={() => handdleCompress()}>
                         <i className="tio-first-page navbar-vertical-aside-toggle-short-align">
                             <FirstPage />
                         </i>
@@ -73,7 +80,7 @@ const Navbar = () => {
 
                         <li className="nav-item">
                             {/* @@include("../layouts-components/dropdown-user.html") */}
-                            <DropDownUser/>
+                            <DropDownUser setActivePop={setActivePop}/>
                         </li>
                     </ul>
                 </div>

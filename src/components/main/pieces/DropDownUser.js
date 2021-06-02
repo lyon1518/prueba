@@ -1,7 +1,7 @@
 import React from "react";
 import MainScripts from "../../../scripts/MainComponents";
 
-const DropDownUser = () => {
+const DropDownUser = (props) => {
     const handdlePop = ()=>{
         MainScripts.handdleActive('accountNavbarDropdown')
     }
@@ -121,9 +121,9 @@ const DropDownUser = () => {
 
                 <div className="dropdown-divider"></div>
 
-                <a className="dropdown-item" href="/#">
+                <div className="dropdown-item pointer" onClick={()=>props.setActivePop(true)}>
                     <span className="text-truncate pr-2" title="Sign out">Sign out</span>
-                </a>
+                </div>
             </div>
         </div>
     )

@@ -1,4 +1,5 @@
-import Functions from "./Functions";
+import ValidateResponse from "../validty/ValidateResponse";
+
 function haedersObject(id, disablePadding, label) {
     this.id = id;
     this.disablePadding = disablePadding;
@@ -20,7 +21,7 @@ this.controlPadings = controlPadings
 const HeaderTable = {
     getHeader(data,headers){
         let head = []
-        let valid = Functions.validObject(data)
+        let valid = ValidateResponse.Response(data)
         let keys
         if (valid === 'array') {
             keys = Object.keys(data[0])

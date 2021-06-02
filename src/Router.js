@@ -1,27 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
-// import Navbar from "./components/navbs/Navbar-index";
-import Login from "./components/contenidos/login";
+import Login from "./components/contenidos/Login";
 import { StoreContext } from "./store/StoreProvider";
-import NavbarContent from "./components/navbs/NavbarContent";
+import NavbarContent from "./components/main/NavbarContent";
 const RouterApp = ()=>{
     const [store] = useContext(StoreContext)
     const {sesion} = store
-    const [Sesion,setSesion] = useState(false)
-    useEffect(()=>{
-        // console.log('route');
-        setSesion(sesion.SignIn)
-    },[sesion.SignIn])
-    if (!Sesion) {
-        return(
-            <Login setSesion={setSesion}/>
-        )
-    }else{
-        return(
-            <BrowserRouter>
-                <NavbarContent/>
-            </BrowserRouter>
-        )
-    }
+    return(
+        <BrowserRouter>
+            {sesion.SignIn?
+            <NavbarContent/>:
+            <Login/>
+            }
+        </BrowserRouter>
+    )
 }
 export default RouterApp
