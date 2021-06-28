@@ -4,9 +4,11 @@ import SendData from "./SendData";
 import Functions from "../../scripts/control/Functions";
 import { StoreContext } from "../../store/StoreProvider";
 import Pop from "../others/Pop";
+import { useHistory } from "react-router-dom";
 // import Validation from "../../scripts/validty/Validation";
 
 const Login = (props) => {
+  let history = useHistory();
   const [Pass, setPass] = useState(false)
   const [ActivePop, setActivePop] = useState(false)
   const [Data, setData] = useState(false)
@@ -26,6 +28,7 @@ const Login = (props) => {
         obj.type = 'singIn'
         setData(obj)
         setActivePop(true)
+        history.push("/");
         // props.setSesion(true)
       }, 2000);
     }
