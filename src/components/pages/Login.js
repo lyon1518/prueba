@@ -12,7 +12,7 @@ const Login = (props) => {
   const [Data, setData] = useState(false)
   const [store] = useContext(StoreContext)
   const handleSingIn = async() => {
-    // console.log('iniciar');
+    console.log(process.env);
     window.event.preventDefault()
     let correo = document.querySelector('#signinSrEmail')
     let pass = document.querySelector('#signupSrPassword')
