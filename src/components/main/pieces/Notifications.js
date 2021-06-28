@@ -27,19 +27,11 @@ const Notifications = (props) => {
                 break;
         }
     }
-    const handleOptions = (e) => {
-        e.preventDefault()
-        let notificationSettingsOneDropdown = document.querySelector('#notificationSettingsOneDropdown')
-        if (notificationSettingsOneDropdown.classList.contains("hs-unfold-content-initialized")) {
-            notificationSettingsOneDropdown.classList.remove("hs-unfold-content-initialized", "hs-unfold-css-animation", "animated", "slideInUp")
-        } else {
-            notificationSettingsOneDropdown.classList.add("hs-unfold-content-initialized", "hs-unfold-css-animation", "animated", "slideInUp")
-        }
-    }
+    
     return (
         <div className="hs-unfold">
             <a className="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="./"
-                onClick={()=>{MainScripts.handdleActive('notificationDropdown')}}
+                onClick={()=>MainScripts.handdleActive('notificationDropdown')}
                 data-hs-unfold-options='{
                     "target": "#notificationDropdown",
                     "type": "css-animation"
@@ -48,14 +40,15 @@ const Notifications = (props) => {
                 <span className="btn-status btn-sm-status btn-status-danger"></span>
             </a>
 
-            <div onPointerLeave={()=>{MainScripts.handdleActive('notificationDropdown')}} id="notificationDropdown" className="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: '25rem', display:'none !important'}}>
+            {/* <div  id="notificationDropdown" className="dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: '25rem', display:'none'}}> */}
+            <div onPointerLeave={()=>MainScripts.handdleActive('notificationDropdown')} id="notificationDropdown" className="dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: '25rem', display:'none'}}>
             {/* <div onPointerLeave={() => { MainScripts.handdleActive('appsDropdown') }} id="appsDropdown" className="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu" style={{ width: "25rem" }}></div> */}
                 <div className="card-header">
                     <span className="card-title h4">Notifications</span>
 
                     <div className="hs-unfold">
                         <a className="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="./"
-                            onClick={handleOptions}
+                            onClick={()=>MainScripts.handdleActive('notificationSettingsOneDropdown')}
                             data-hs-unfold-options='{
                                 "target": "#notificationSettingsOneDropdown",
                                 "type": "css-animation"

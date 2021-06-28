@@ -22,7 +22,7 @@ const ValidateForm = {
         datos.forEach((e, index) => {
             if (e === '') {
                 complete++
-                obj = new popSquema('ActivePop', 'error', true, index === 0 ? ErrorHandler.GetError('EmptyEmail') : ErrorHandler.GetError('EmptyPass'), '')
+                obj = new popSquema('ActivePop', 'error', true, index === 0 ? ErrorHandler.GetError('EmptyEmail') : ErrorHandler.GetError('EmptyPass',UserError), '')
             }
         })
 

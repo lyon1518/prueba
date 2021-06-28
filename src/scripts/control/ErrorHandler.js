@@ -1,24 +1,34 @@
-import Errors from "./Errors";
-import GetServer from "./GetServer";
+import Errors, {ErrosComponent} from "./Errors";
+import ErrorsLogin from "./errors/Login";
+// import GetServer from "./GetServer";
 const ErrorHandler = {
     GetError(error, type, property, typeData, propertyRequest) {
         if (error !== undefined) {
             let err = Errors[error]
-            if (GetServer.Server()) {
+            if (process.env.REACT_APP_SERVER === "DEVELOPER") {
                 if (err === undefined || err.messageD === '') {
+                    let message = ""
+                    message = 'No fue seleccionado uno de los errores registrados en nuestro catalogo selecciona alguno de ellos para mostrarlo'
                     switch (type) {
                         case 'typeData':
-                            return 'El formato de ' + property + ' es un ' + typeData + ' y se esperaba un ' + propertyRequest
+                            message = 'El formato de ' + property + ' es un ' + typeData + ' y se esperaba un ' + propertyRequest
+                            break;
                         case 'required':
-                            return 'La propiedad ' + property + ' es obligatoria'
+                            message = 'La propiedad ' + property + ' es obligatoria'
+                            break;
+                        case 'ErrorLogin':
+                            console.table(ErrorsLogin);
+                            break;
                         default:
+                            console.table(ErrosComponent);
                             break;
                     }
+                    return message
                 } else {
-                    return GetServer.Server() ? err.messageD : err.messageP
+                    return process.env.REACT_APP_SERVER === "DEVELOPER" ? err.messageD : err.messageP
                 }
-            }else {
-                return GetServer.Server() ? err.messageD : err.messageP
+            } else {
+                return process.env.REACT_APP_SERVER === "DEVELOPER" ? err.messageD : err.messageP
             }
         }
     }

@@ -1,13 +1,14 @@
-import img1 from "../../img/160x160/img1.jpg";
-// import img2 from "../../img/160x160/img2.jpg";
-import img3 from "../../img/160x160/img3.jpg";
-import img4 from "../../img/160x160/img4.jpg";
-import img5 from "../../img/160x160/img5.jpg";
-import img6 from "../../img/160x160/img6.jpg";
-import img7 from "../../img/160x160/img7.jpg";
-import img8 from "../../img/160x160/img8.jpg";
-import img9 from "../../img/160x160/img9.jpg";
-import img10 from "../../img/160x160/img10.jpg";
+import img1 from "../../assets/img/160x160/img1.jpg";
+// import img2 from "../../assets/img/160x160/img2.jpg";
+import img3 from "../../assets/img/160x160/img3.jpg";
+import img4 from "../../assets/img/160x160/img4.jpg";
+import img5 from "../../assets/img/160x160/img5.jpg";
+import img6 from "../../assets/img/160x160/img6.jpg";
+import img7 from "../../assets/img/160x160/img7.jpg";
+import img8 from "../../assets/img/160x160/img8.jpg";
+import img9 from "../../assets/img/160x160/img9.jpg";
+import img10 from "../../assets/img/160x160/img10.jpg";
+
 const Imgs = {
     members:[
         {img:img7},

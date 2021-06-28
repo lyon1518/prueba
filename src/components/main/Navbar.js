@@ -7,7 +7,7 @@ import DropDownUser from "./pieces/DropDownUser";
 import Icon from "./pieces/Icon";
 import Search from "./pieces/Search";
 import MainScripts from "../../scripts/MainComponents";
-import SendData from "../contenidos/SendData";
+import SendData from "../pages/SendData";
 
 const Navbar = (props) => {
     const [store] = useContext(StoreContext)

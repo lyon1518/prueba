@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
-import Login from "./components/contenidos/Login";
+import Login from "./components/pages/Login";
 import { StoreContext } from "./store/StoreProvider";
 import NavbarContent from "./components/main/NavbarContent";
 const RouterApp = ()=>{

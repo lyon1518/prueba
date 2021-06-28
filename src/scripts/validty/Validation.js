@@ -17,7 +17,6 @@ const Validate = {
                 objeto.error = true
                 objeto.type = 'errorProperty'
                 objeto.messE = ErrorHandler.GetError(UserSError,'required',e)
-                
             }
             childrens.forEach(f => {
                 if (typeof squem[e][f] === 'object') {

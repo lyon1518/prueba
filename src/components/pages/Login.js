@@ -11,11 +11,6 @@ const Login = (props) => {
   const [ActivePop, setActivePop] = useState(false)
   const [Data, setData] = useState(false)
   const [store] = useContext(StoreContext)
-  // const handleSingIn = ()=>{
-  //   window.event.preventDefault()
-  //   console.log(Functions);
-  //   console.log(Functions.encodeType(['asd', '234'], 'expert'));
-  // }
   const handleSingIn = async() => {
     // console.log('iniciar');
     window.event.preventDefault()

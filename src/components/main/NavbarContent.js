@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Route } from "react-router";
 import { Switch } from "react-router-dom";
 import { StoreContext } from "../../store/StoreProvider";
-import Settings from "../contenidos/Settings";
+import Settings from "../pages/Settings";
 import Pop from "../others/Pop";
 import Default from "../pages/dashboard/Default";
 import Foter from "./Foter";

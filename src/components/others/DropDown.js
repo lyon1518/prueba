@@ -9,7 +9,7 @@ import Avatar from "./Avatar";
 import DropDownLeft from './DropDownLeft';
 import { Link } from 'react-router-dom';
 import Tabs from './Tabs';
-import SendData from '../contenidos/SendData';
+import SendData from '../pages/SendData';
 
 export default function MenuListComposition(props) {
   const [open, setOpen] = React.useState(false);

@@ -7484,6 +7484,8 @@ a.close.disabled {
   border: 0.0625rem solid transparent;
   border-radius: 0.75rem;
   outline: 0;
+  height: 90vh;
+  overflow: auto;
 }
 
 .modal-backdrop {
@@ -26875,8 +26877,8 @@ label.btn {
 ------------------------------------*/
 .g-0,
 .gx-0 {
-  margin-left: --0.0625rem;
-  margin-right: --0.0625rem;
+  margin-left: -0.0625rem;
+  margin-right: -0.0625rem;
 }
 
 .g-0 > *,
@@ -27020,8 +27022,8 @@ label.btn {
 @media (min-width: 576px) {
   .g-sm-0,
   .gx-sm-0 {
-    margin-left: --0.0625rem;
-    margin-right: --0.0625rem;
+    margin-left: -0.0625rem;
+    margin-right: -0.0625rem;
   }
   .g-sm-0 > *,
   .gx-sm-0 > * {
@@ -27143,8 +27145,8 @@ label.btn {
 @media (min-width: 768px) {
   .g-md-0,
   .gx-md-0 {
-    margin-left: --0.0625rem;
-    margin-right: --0.0625rem;
+    margin-left: -0.0625rem;
+    margin-right: -0.0625rem;
   }
   .g-md-0 > *,
   .gx-md-0 > * {
@@ -27266,8 +27268,8 @@ label.btn {
 @media (min-width: 992px) {
   .g-lg-0,
   .gx-lg-0 {
-    margin-left: --0.0625rem;
-    margin-right: --0.0625rem;
+    margin-left: -0.0625rem;
+    margin-right: -0.0625rem;
   }
   .g-lg-0 > *,
   .gx-lg-0 > * {
@@ -27389,8 +27391,8 @@ label.btn {
 @media (min-width: 1200px) {
   .g-xl-0,
   .gx-xl-0 {
-    margin-left: --0.0625rem;
-    margin-right: --0.0625rem;
+    margin-left: -0.0625rem;
+    margin-right: -0.0625rem;
   }
   .g-xl-0 > *,
   .gx-xl-0 > * {
@@ -27512,8 +27514,8 @@ label.btn {
 @media (min-width: 1400px) {
   .g-xxl-0,
   .gx-xxl-0 {
-    margin-left: --0.0625rem;
-    margin-right: --0.0625rem;
+    margin-left: -0.0625rem;
+    margin-right: -0.0625rem;
   }
   .g-xxl-0 > *,
   .gx-xxl-0 > * {

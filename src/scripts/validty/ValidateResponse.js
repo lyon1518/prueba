@@ -7,6 +7,14 @@ const ValidateResponse = {
                 return ('object')
             default:
         }
+    },
+    convertArray(data){
+        let arr = []
+        let obj = Object.keys(data)
+        obj.forEach(e=>{
+            arr.push(data[e])
+        })
+        return arr
     }
 }
 export default ValidateResponse
