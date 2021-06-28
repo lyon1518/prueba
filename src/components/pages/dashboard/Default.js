@@ -22,6 +22,7 @@ const Default = () => {
         table.addCol("email","Correo","",true,"")
         table.addCol("signed","Suscripción","",true,"")
         table.validity(table)
+        console.log(table);
         setTable1(table)
 
         let table2 = new Tables()
@@ -37,11 +38,12 @@ const Default = () => {
 
     const getTableData = useCallback(async () => {
         const table = await Request.RequestGet('/table1')
+        console.log(table);
         setDataTable1(table.data)
     },[])
     useEffect(() => {
         getTableData()
-        // console.log('ok');
+        console.log('ok');
     }, [getTableData])
     if (DataTable1 === undefined) {
         return(<div></div>)
