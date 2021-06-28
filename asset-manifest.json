@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/prueba/static/css/main.f6e3762f.chunk.css",
+    "main.js": "/prueba/static/js/main.36a0a833.chunk.js",
+    "main.js.map": "/prueba/static/js/main.36a0a833.chunk.js.map",
+    "runtime-main.js": "/prueba/static/js/runtime-main.c3aafc6d.js",
+    "runtime-main.js.map": "/prueba/static/js/runtime-main.c3aafc6d.js.map",
+    "static/css/2.150d169a.chunk.css": "/prueba/static/css/2.150d169a.chunk.css",
+    "static/js/2.45a9aaf5.chunk.js": "/prueba/static/js/2.45a9aaf5.chunk.js",
+    "static/js/2.45a9aaf5.chunk.js.map": "/prueba/static/js/2.45a9aaf5.chunk.js.map",
+    "index.html": "/prueba/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/prueba/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.f6e3762f.chunk.css.map": "/prueba/static/css/main.f6e3762f.chunk.css.map",
+    "static/js/2.45a9aaf5.chunk.js.LICENSE.txt": "/prueba/static/js/2.45a9aaf5.chunk.js.LICENSE.txt",
+    "static/media/styles.scss": "/prueba/static/media/bagroud-login.f1f2a082.svg",
+    "static/media/img10.028d1704.jpg": "/prueba/static/media/img10.028d1704.jpg",
+    "static/media/img3.b77fa099.jpg": "/prueba/static/media/img3.b77fa099.jpg",
+    "static/media/img4.cc0fea6e.jpg": "/prueba/static/media/img4.cc0fea6e.jpg",
+    "static/media/img5.ab792987.jpg": "/prueba/static/media/img5.ab792987.jpg",
+    "static/media/img6.4aeddc91.jpg": "/prueba/static/media/img6.4aeddc91.jpg",
+    "static/media/img8.db310986.jpg": "/prueba/static/media/img8.db310986.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c3aafc6d.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.45a9aaf5.chunk.js",
+    "static/css/main.f6e3762f.chunk.css",
+    "static/js/main.36a0a833.chunk.js"
+  ]
+}
