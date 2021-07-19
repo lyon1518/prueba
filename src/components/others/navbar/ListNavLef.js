@@ -14,7 +14,7 @@ const ListNavLef = (props) => {
                 ids.push(window.event.path[a].id)
             }
         }
-        console.log(id);
+        // console.log(id);
         let list = document.querySelector('#' + ids[0])
         let minimode = document.querySelector('.navbar-vertical-aside-mini-mode')
         if (list !== undefined && list !== null) {

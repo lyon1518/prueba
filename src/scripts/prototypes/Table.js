@@ -1,5 +1,6 @@
 import ValidateResponse from "../validty/ValidateResponse";
 import ValidateTable from "../validty/ValidateTable";
+import ErrorHandler from "../control/ErrorHandler";
 
 function controlTable(id, name, data, squema, clase, background, paginador, search, controlPadding, checkbox) {
     this.id = id;
@@ -35,9 +36,6 @@ function ErrorTable(messE) {
     this.messE = messE
 }
 class Tables {
-    createSquem() {
-
-    }
     create(id, name, obj, squema, clase, background, paginador, search, controlPadding, checkbox) {
         this.SquemaCreate(id, name, obj, squema)
         this.Convert(obj)
@@ -56,17 +54,11 @@ class Tables {
     Convert(data) {
         this.obj = ValidateResponse.convertArray(data)
     }
-    PathError(message,requireds) {
-        console.log("Estos son los campos obligatorios");
-        console.table(requireds);
-        var e = new Error(message);
-        console.log(e);
-        return e
-    }
+    
     SquemaCreate(id, name, obj, squema) {
         if (id === undefined || name === undefined || obj === undefined || squema === undefined || id === "" || name === "" || obj === "" || squema === "") {
             let messa = "El esquema para la creación de tabla no cumple con los parametros"
-            this.PathError(messa,["id", "name", "obj", "squema"])
+            ErrorHandler.PathError(messa,["id", "name", "obj", "squema"])
             this.error = new ErrorTable(messa)
         }
     }
@@ -85,7 +77,7 @@ class Tables {
     SquemaActions(grup, type, title, color, icon) {
         if (grup === undefined || type === undefined || title === undefined || color === undefined || icon === undefined || grup === "" || type === "" || title === "" || color === "" || icon === "") {
             let messa = "El esquema para añadir acciones no cumple con la información necesaria para contruirlo"
-            this.PathError(messa,["grup", "type", "title", "color", "icon"])
+            ErrorHandler.PathError(messa,["grup", "type", "title", "color", "icon"])
             this.error = new ErrorTable(messa)
         }
     }

@@ -8,7 +8,11 @@ const ErrorHandler = {
             delete data[e].messageP
         });
     },
-    PathError(message) {
+    PathError(message,requireds) {
+        if (requireds !== undefined && process.env.REACT_APP_SERVER === "DEVELOPER") {
+            console.log("Estos son los campos obligatorios");
+            console.table(requireds);
+        }
         var e = new Error(message);
         console.log(e);
         return e
