@@ -9,7 +9,8 @@ const ErrorHandler = {
         });
     },
     PathError(message,requireds) {
-        if (requireds !== undefined && process.env.REACT_APP_SERVER === "DEVELOPER") {
+        console.log(process.env);
+        if (requireds !== undefined && process.env.NODE_ENV === "development") {
             console.log("Estos son los campos obligatorios");
             console.table(requireds);
         }
