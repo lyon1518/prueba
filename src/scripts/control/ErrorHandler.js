@@ -9,7 +9,7 @@ const ErrorHandler = {
         });
     },
     PathError(message,requireds) {
-        console.log(process.env);
+        // console.log(process.env);
         if (requireds !== undefined && process.env.NODE_ENV === "development") {
             console.log("Estos son los campos obligatorios");
             console.table(requireds);
