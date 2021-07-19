@@ -10,13 +10,15 @@ const ErrorHandler = {
     },
     PathError(message,requireds) {
         // console.log(process.env);
-        if (requireds !== undefined && process.env.NODE_ENV === "development") {
-            console.log("Estos son los campos obligatorios");
-            console.table(requireds);
+        if (process.env.NODE_ENV === "development") {
+            if (requireds !== undefined ) {
+                console.log("Estos son los campos obligatorios");
+                console.table(requireds);
+            }
+            var e = new Error(message);
+            console.log(e);
+            return e
         }
-        var e = new Error(message);
-        console.log(e);
-        return e
     },
     GetError(error, type, property, typeData, propertyRequest) {
         if (error !== undefined) {
