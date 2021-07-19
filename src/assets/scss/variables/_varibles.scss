@@ -68,7 +68,7 @@ $colors: ('primary':$primary, 'secondary':$secondary, 'info':$info, 'danger':$da
     }
 }
 .sp{
-    padding: 0px;
+    padding: 0px !important;
 }
 a{
     text-decoration: none !important;

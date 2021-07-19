@@ -20,12 +20,24 @@ function addCol(id, nombre, url, sort, width) {
     this.sort = sort;
     this.width = width;
 }
+function addAction(grup, type, component, title, color, icon, action) {
+    this.title = title;
+    this.color = color;
+    this.icon = icon;
+    this.grup = grup;
+    this.type = type;
+    this.component = component;
+    this.action = action;
+}
 function ErrorTable(messE) {
     this.error = true
     this.type = 'errorProperty'
     this.messE = messE
 }
 class Tables {
+    createSquem() {
+
+    }
     create(id, name, obj, squema, clase, background, paginador, search, controlPadding, checkbox) {
         this.SquemaCreate(id, name, obj, squema)
         this.Convert(obj)
@@ -39,20 +51,42 @@ class Tables {
         this.controlPadding = controlPadding;
         this.checkbox = checkbox;
         this.cols = []
+        this.actionst = []
     }
-    Convert(data){
+    Convert(data) {
         this.obj = ValidateResponse.convertArray(data)
+    }
+    PathError(message,requireds) {
+        console.log("Estos son los campos obligatorios");
+        console.table(requireds);
+        var e = new Error(message);
+        console.log(e);
+        return e
     }
     SquemaCreate(id, name, obj, squema) {
         if (id === undefined || name === undefined || obj === undefined || squema === undefined || id === "" || name === "" || obj === "" || squema === "") {
-            this.error = new ErrorTable("El esquema para la creacion de tabla no cumple con los parametros")
+            let messa = "El esquema para la creación de tabla no cumple con los parametros"
+            this.PathError(messa,["id", "name", "obj", "squema"])
+            this.error = new ErrorTable(messa)
         }
     }
     actions(edit, delet, notification) {
         this.action = {
             edit: edit,
             delet: delet,
-            notification: notification,
+            notification: notification
+        }
+    }
+    addActions(grup, type, component, title, color, icon, action) {
+        this.SquemaActions(grup, type, title, color, icon)
+        let col2 = new addAction(grup, type, component, title, color, icon, action)
+        this.actionst.push(col2)
+    }
+    SquemaActions(grup, type, title, color, icon) {
+        if (grup === undefined || type === undefined || title === undefined || color === undefined || icon === undefined || grup === "" || type === "" || title === "" || color === "" || icon === "") {
+            let messa = "El esquema para añadir acciones no cumple con la información necesaria para contruirlo"
+            this.PathError(messa,["grup", "type", "title", "color", "icon"])
+            this.error = new ErrorTable(messa)
         }
     }
     addCol(id, nombre, url, sort, width) {

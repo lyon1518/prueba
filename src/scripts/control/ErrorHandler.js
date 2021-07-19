@@ -1,7 +1,18 @@
-import Errors, {ErrosComponent} from "./Errors";
+import Errors, { ErrosComponent } from "./Errors";
 import ErrorsLogin from "./errors/Login";
 // import GetServer from "./GetServer";
 const ErrorHandler = {
+    ErrorDeveloper(data) {
+        let keys = Object.keys(data)
+        keys.forEach(e => {
+            delete data[e].messageP
+        });
+    },
+    PathError(message) {
+        var e = new Error(message);
+        console.log(e);
+        return e
+    },
     GetError(error, type, property, typeData, propertyRequest) {
         if (error !== undefined) {
             let err = Errors[error]
@@ -17,9 +28,18 @@ const ErrorHandler = {
                             message = 'La propiedad ' + property + ' es obligatoria'
                             break;
                         case 'ErrorLogin':
+                            this.PathError(message)
+                            this.ErrorDeveloper(ErrorsLogin)
+                            console.table(ErrorsLogin);
+                            break;
+                        case 'ErrorRequest':
+                            this.PathError(message)
+                            this.ErrorDeveloper(ErrorsLogin)
                             console.table(ErrorsLogin);
                             break;
                         default:
+                            // throw e;
+                            this.PathError(message)
                             console.table(ErrosComponent);
                             break;
                     }

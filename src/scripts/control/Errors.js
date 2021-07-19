@@ -4,8 +4,13 @@ import Request from "./errors/Request";
 const ErrosComponent = {
     login:'ErrorLogin',
     table:"Table",
+    request:"ErrorRequest",
+}
+const ErrosRequest = {
+    options:['array','object','custom'],
+    errorOptions:['server','personalize']
 }
 const Errors = {}
 Object.assign(Errors, Login,Table,Request)
-export {ErrosComponent}
+export {ErrosComponent,ErrosRequest}
 export default Errors

@@ -5,9 +5,10 @@ const Edit = (props) => {
     const [keys, setKeys] = useState({})
     const [data, setData] = useState([])
     useEffect(() => {
-        let keys = Object.keys(props?.data?.data[0])
+        console.log(props);
+        let keys = Object.keys(props?.selected[0])
         setKeys(keys)
-        setData(props?.data?.data)
+        setData(props.selected)
         
     }, [props])
     return (
@@ -15,7 +16,7 @@ const Edit = (props) => {
             <div className="modal-content">
                 <div className="modal-header bg-white">
                     <h1 className="mt-2">Edicion</h1>
-                    <button onClick={() => props.setSend(true)} type="button" className="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
+                    <button onClick={() => props.setActions(false)} type="button" className="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
                         <i className="tio-clear tio-lg"><Close /></i>
                     </button>
                 </div>
@@ -48,7 +49,7 @@ const Edit = (props) => {
                     })}
                 </div>
                 <div className="modal-footer justify-content-start bg-white">
-                    <button onClick={() => props.setSend(true)} type="button" className="btn btn-success" data-dismiss="modal" aria-label="Close">
+                    <button onClick={() => props.setActions(false)} type="button" className="btn btn-success" data-dismiss="modal" aria-label="Close">
                         Guardar
                     </button>
                 </div>

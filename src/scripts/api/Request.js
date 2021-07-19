@@ -1,17 +1,60 @@
 import Wrapper from "./Wrapper"
+import ValidateResponse from "../validty/ValidateResponse";
+import { ErrosRequest } from "../control/Errors";
 
 const Request = {
-    async RequestGet(url) {
+    tranformRequest(data, response, error, personalize) {
+        let request = undefined
+        request = data
+        if (response !== undefined && data.typeError === undefined) {
+            switch (response) {
+                case 'array':
+                    request = ValidateResponse.convertArray(data.data)
+                    break;
+                case 'object':
+                    request = ValidateResponse.convertObjec(data.data)
+                    break;
+                case 'custom':
+                    request = personalize
+                    break;
+                case '':
+                    console.table('Seleeciona una opcion de respuesta');
+                    console.table(ErrosRequest.options);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (error !== undefined) {
+            switch (error) {
+                case 'personalize':
+                    request = personalize
+                    break;
+                case 'server':
+                    request = data
+                    break;
+                case '':
+                    console.table('Seleeciona una opcion de error');
+                    console.table(ErrosRequest.errorOptions);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        return request
+    },
+    async RequestGet(url, response, error, personalize) {
         const get = await Wrapper.getData(url)
-        return get
+        return this.tranformRequest(get, response, error, personalize)
     },
-    async RequestPost(url, service) {
+    async RequestPost(url, service, response, error, personalize) {
         const post = await Wrapper.postData(url, service)
-        return post
+        return this.tranformRequest(post, response, error, personalize)
     },
-    async RequestDelete(url, service) {
+    async RequestDelete(url, service, response, error, personalize) {
         const dell = await Wrapper.deleteData(url, service)
-        return dell
+        return this.tranformRequest(dell, response, error, personalize)
     },
 }
 export default Request

@@ -19,7 +19,6 @@ const Login = (props) => {
     let correo = document.querySelector('#signinSrEmail')
     let pass = document.querySelector('#signupSrPassword')
     let sesion = await Functions.signIn(correo,pass,'ErrorLogin')
-    // let sesion = Functions.signIn(correo,pass,Apis.sesion,'')
     setData(sesion)
     setActivePop(true)
     if(sesion.typeClas === 'success'){

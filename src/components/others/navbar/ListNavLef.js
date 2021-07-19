@@ -37,17 +37,19 @@ const ListNavLef = (props) => {
                 }
             }
         }
-        
+
     }
     return (
         <ul className="navbar-nav navbar-nav-lg nav-tabs">
             {props.data.map((e, i) => {
                 return (
                     <ul className="navbar-nav navbar-nav-lg nav-tabs" key={"nvbtbs" + i}>
-                        <li className="nav-item">
-                            <small className="nav-subtitle" title="Pages">{e.title}</small>
-                            <small className="tio-more-horizontal nav-subtitle-replacer"><MoreHoriz /></small>
-                        </li>
+                        {e.title !== undefined || e.title !== '' ?
+                            <li className="nav-item">
+                                <small className={e.title !== ""?"nav-subtitle":"sp"} title="Pages">{e.title}</small>
+                                <small className="tio-more-horizontal nav-subtitle-replacer"><MoreHoriz /></small>
+                            </li> : <div></div>
+                        }
                         {e.list.map((f, z) => {
                             return (
                                 !props.ActiveLateral ?
@@ -114,7 +116,7 @@ const ListNavLef = (props) => {
                                             })}
                                         </ul>
                                     </li> :
-                                    <li id={"nvl2" + z + f.title.replace(' ','')} className="navbar-vertical-aside-has-menu" onMouseOver={() => handdleNav("nvl2" + z + f.title)} key={"nvl2" + z}>
+                                    <li id={"nvl2" + z + f.title.replace(' ', '')} className="navbar-vertical-aside-has-menu" onMouseOver={() => handdleNav("nvl2" + z + f.title)} key={"nvl2" + z}>
                                         {f.list.length === 0 ?
                                             <Link className={f.list.length > 0 ? "js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" : "nav-link"} to={f.link} title="Apps">
                                                 <i className="tio-apps nav-icon">{f.icon}</i>
@@ -127,7 +129,7 @@ const ListNavLef = (props) => {
                                         }
                                         {f.list.length === 0 ?
                                             // <div id={"tooltip"+f.title} className="tooltip fade show bs-tooltip-right" role="tooltip" style={{ position: "absolute", transform: "translate3d(83px, 301px, 0px)", top: "0px", left: "0px", willChange: "transform", width: "max-content" }} x-placement="right">
-                                            <div id={"tooltip"+f.title} className="tooltip fade bs-tooltip-right" role="tooltip"  x-placement="right">
+                                            <div id={"tooltip" + f.title} className="tooltip fade bs-tooltip-right" role="tooltip" x-placement="right">
                                                 <div className="arrow" style={{ top: "8px" }}></div>
                                                 <div className="tooltip-inner">{f.title}</div>
                                             </div> : ''

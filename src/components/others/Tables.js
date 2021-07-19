@@ -18,13 +18,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { Edit, Notifications, Search } from "@material-ui/icons";
+import { Search, Settings } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 import SendData from '../pages/SendData';
-import popSquema from '../../scripts/prototypes/PopSquema';
 // import ValidateResponse from '../../scripts/validty/ValidateResponse';
-
+import SettingsTable from "./table/Settings";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -53,7 +51,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headers, checks } = props;
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headers, SettingsParams } = props;
   const headCells = headers
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -62,7 +60,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {checks ?
+        {SettingsParams[1] ?
           <TableCell padding="checkbox">
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -139,11 +137,11 @@ const useToolbarStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedTableToolbar = (props) => {
-  const [ActivePop, setActivePop] = useState(false)
-  const [dataAction, setDataAction] = useState({})
+  const [SettingsActive, setSettingsActive] = useState(false)
   const classes = useToolbarStyles();
-  const { selected, numSelected, title, rows, id, search, action } = props;
-  const { delet, edit, notification } = action
+  const { numSelected, title, rows, id, SettingsParams, DataTable } = props;
+  const { actionst } = DataTable
+
   const searchB = () => {
     if (window.event.keyCode === 13 || window.event.type === "click") {
       let resultados = []
@@ -172,28 +170,16 @@ const EnhancedTableToolbar = (props) => {
       }
     }
   }
-  const handleActions = (data) => {
-    switch (data) {
-      case 'delete':
-        console.log('Elementos Eliminados');
-        console.log(selected);
-        break;
-      case 'edit':
-        let edit = new popSquema('Edit', 'success', false, 'Iniciciando sesión', "", selected)
-        setDataAction(edit)
-        setActivePop(true)
-        break;
-      default:
-        break;
-    }
-  }
   return (
     <Toolbar
       className={clsx(classes.root, {
         [classes.highlight]: numSelected > 0,
       }) + " bg-white text-white"}
     >
-      <SendData type={dataAction.type} setActivePop={setActivePop} data={dataAction} active={ActivePop} />
+      {SettingsActive ?
+        // console.log('aca', <SettingsTable/>)
+        <SettingsTable data={props} setSettingsActive={setSettingsActive} settings={SettingsParams} setSettingsParams={props.setSettingsParams} />
+        : ''}
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
           {numSelected} Seleccionado
@@ -206,40 +192,44 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <div className={classes.dContents}>
-          {delet ?
-            <Tooltip title="Borrar" className="bg-danger" onClick={() => handleActions('delete')}>
-              <IconButton aria-label="Borrar" className="text-white">
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            : ""}
-          {edit ?
-            <Tooltip title="Editar" className="bg-warning ml-2" onClick={() => handleActions('edit')}>
-              <IconButton aria-label="Editar" className="text-white">
-                <Edit />
-              </IconButton>
-            </Tooltip>
-            : ""}
-          {notification ?
-            <Tooltip title="Notificar" className="bg-success ml-2" onClick={() => handleActions('notification')}>
-              <IconButton aria-label="Notificar" className="text-white">
-                <Notifications />
-              </IconButton>
-            </Tooltip>
-            : ""}
+          {actionst.map((e, i) => {
+            if (e.grup === "grupal") {
+              return (
+                <div key={"buttonA-" + i}>
+                  <Tooltip title={e?.title} className={"ml-2 bg-" + e?.color} onClick={() => props.actionSelect(e)}>
+                    {typeof e.icon === 'string' ?
+                      <div className="btn text-white"><small>{e.icon}</small></div> :
+                      <IconButton aria-label={e?.title} className="text-white">
+                        <e.icon />
+                      </IconButton>
+                    }
+                  </Tooltip>
+                </div>
+              )
+            }else{
+              return(<div key={"buttonA-" + i}></div>)
+            }
+          })}
         </div>
       ) : (
-        search ?
+        SettingsParams[4] ?
           <div>
-            <div className="input-group mb-3">
+            <div className="input-group">
               <div className="input-group-prepend">
                 <button className="btn btn-primary" type="button" id="button-addon2" onClick={() => searchB()}><Search /></button>
               </div>
-              <input type="text" className="form-control hpx-40" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" id={id} onKeyDown={() => searchB()} />
+              <input type="text" className="form-control hpx-40 sm" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" id={id} onKeyDown={() => searchB()} />
             </div>
           </div> :
           ''
       )}
+      <div className="btn btn-sm btn-outline-info ml-2" onClick={() => setSettingsActive(true)}>
+        {/* <i className="tio-delete-outlined"> */}
+        <IconButton aria-label="Editar" className="sp">
+          <Settings />
+        </IconButton>
+        {/* </i> */}
+      </div>
     </Toolbar>
   );
 };
@@ -274,9 +264,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable(props) {
+  // console.log(props);
   const classes = useStyles();
   const { DataTable } = props
-  const { obj, name, checkbox, cols, id, search, fondo, paginador, controlPadding, action } = DataTable
+  const { obj, name, checkbox, cols, id, search, background, controlPadding, action, paginador } = DataTable
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('calories');
   const [selected, setSelected] = useState([]);
@@ -286,6 +277,11 @@ export default function EnhancedTable(props) {
   const [rowsOrigin, setRowsOrogin] = useState([]);
   const [ActivePop, setActivePop] = useState(false)
   const [Data, setData] = useState({})
+  const [Actions, setActions] = useState(false)
+  const [Component, setComponent] = useState(undefined)
+  const [SettingsParams, setSettingsParams] = useState([background, checkbox, controlPadding, paginador, search])
+  const { actionst } = DataTable
+
   const AsigRows = useCallback((data) => {
     if (data === undefined) {
       setRowsOrogin(obj)
@@ -360,11 +356,22 @@ export default function EnhancedTable(props) {
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, row.length - page * rowsPerPage);
+    const actionSelect = (data) => {
+      if (data.action !== undefined) {
+        data.action()
+      }else{
+        setComponent(data)
+        setActions(true)
+      }
+    }
 
     return (
       <div className={classes.root}>
-        <Paper className={fondo ? classes.paper : 's-fondo'}>
-          <EnhancedTableToolbar selected={selected} numSelected={selected.length} action={action} title={name} rows={obj} AsigRows={AsigRows} id={id} search={search} checkbox={checkbox} />
+        {Actions ?
+          <SettingsTable data={Component.component} setActions={setActions} selected={selected} actions={true} />
+          : ''}
+        <Paper className={SettingsParams[0] ? classes.paper : 's-fondo'}>
+          <EnhancedTableToolbar numSelected={selected.length} action={action} title={name} rows={obj} AsigRows={AsigRows} id={id} SettingsParams={SettingsParams} DataTable={DataTable} setSettingsParams={setSettingsParams} actionSelect={actionSelect} />
           <TableContainer>
             <Table
               className={classes.table}
@@ -382,6 +389,7 @@ export default function EnhancedTable(props) {
                 rowCount={obj?.length}
                 headers={cols}
                 checks={checkbox}
+                SettingsParams={SettingsParams}
               />
               <TableBody>
                 {stableSort(rowsOrigin, getComparator(order, orderBy))
@@ -389,21 +397,23 @@ export default function EnhancedTable(props) {
                   .map((row, index) => {
                     const isItemSelected = isSelected(row);
                     const labelId = `enhanced-table-checkbox-${index}`;
-
+                    // console.log(row.id);
+                    // console.log(selected.id);
                     return (
                       <TableRow
                         hover
-                        onClick={checkbox ? ((event) => handleClick(event, row)) : null}
+                        // onClick={checkbox ? ((event) => handleClick(event, row)) : null}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
                         key={row.name}
                         selected={isItemSelected}
                       >
-                        {checkbox ?
+                        {SettingsParams[1] ?
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
+                              onClick={checkbox ? ((event) => handleClick(event, row)) : null}
                               inputProps={{ 'aria-labelledby': labelId }}
                             />
                           </TableCell> : <td></td>
@@ -424,7 +434,33 @@ export default function EnhancedTable(props) {
                           )
                         })
                         }
-
+                        
+                        {selected.length > 0 ?
+                          selected.map((e, i) => {
+                            if (row.id === e.id) {
+                              return (
+                                <TableCell className="d-flex" key={'buttons' + i}>
+                                  {actionst.map((e, i) => {
+                                    return (
+                                      <div className="m-auto" key={"buttonA-" + i}>
+                                        <Tooltip title={e?.title} className={"ml-2 bg-" + e?.color} onClick={() => actionSelect(e)}>
+                                          {typeof e.icon === 'string' ?
+                                            <div className="btn text-white"><small>{e.icon}</small></div> :
+                                            <IconButton aria-label={e?.title} className="text-white">
+                                              <e.icon />
+                                            </IconButton>
+                                          }
+                                        </Tooltip>
+                                      </div>
+                                    )
+                                  })}
+                                </TableCell>
+                              )
+                            } else {
+                              return (<td className="d-none" key={'buttons' + i}></td>)
+                            }
+                          })
+                          : <td></td>}
                       </TableRow>
                     );
                   })}
@@ -436,7 +472,7 @@ export default function EnhancedTable(props) {
               </TableBody>
             </Table>
           </TableContainer>
-          {paginador ?
+          {SettingsParams[3] ?
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
@@ -449,7 +485,7 @@ export default function EnhancedTable(props) {
 
           }
         </Paper>
-        {controlPadding ?
+        {SettingsParams[2] ?
           <FormControlLabel
             control={<Switch checked={dense} onChange={handleChangeDense} />}
             label="Control de espaciado"
