@@ -17,7 +17,7 @@ const Default = () => {
         let table = new Tables()
         table.create("tabla1","tabla1",DataTable1,"tableDasbord","",true,true,true,true,true)
         // table.create()
-        table.addActions('','default',Editar,'Editar','warning',Edit)
+        table.addActions('grupal','default',Editar,'Editar','warning',Edit)
         table.addActions('grupal','default',Navbar,'Mostrar','success','mostrar')
         table.addActions('grupal','custom','','Prueba','dark','Prueba',prueba)
         table.addCol("id","ID","/settings",true,"")
