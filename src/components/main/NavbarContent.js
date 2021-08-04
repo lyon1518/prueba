@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import NavLeft from "./NavLeft";
 import NavRight from "./pieces/NavRight";
 import Shadow from "./pieces/Shadow";
+import LayoutBasic from "../pages/Layouts/LayoutBasic";
 
 const NavbarContent = () => {
     const [store] = useContext(StoreContext)
@@ -26,6 +27,7 @@ const NavbarContent = () => {
                     <Switch>
                         <Route exact path='/' component={Default} />
                         <Route exact path='/settigs' component={Settings} />
+                        <Route exact path='/layout' component={LayoutBasic} />
                     </Switch>
                     <Foter/>
                 </div>

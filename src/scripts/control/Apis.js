@@ -78,7 +78,7 @@ const Apis = {
                                             icon: <Lens className="w-6-px"/>,
                                             title: 'Overview',
                                             separador: false,
-                                            link: '',
+                                            link: 'layout',
                                             list: []
                                         }
                                     ]

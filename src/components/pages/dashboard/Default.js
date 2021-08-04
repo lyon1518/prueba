@@ -4,8 +4,9 @@ import TableComponent from "../../others/Tables";
 import Request from "../../../scripts/api/Request";
 import { Tables } from "../../../scripts/prototypes/Table";
 import Editar from "../../others/pop/Edit";
-import { Edit } from "@material-ui/icons";
-import Navbar from "../../pages/Login";
+import { Edit, MoreVert } from "@material-ui/icons";
+import DropDowList from "../../../scripts/prototypes/Layouts/DropDowList";
+
 const Default = () => {
     const [DataTable1, setDataTable1] = useState({})
     // const [Rows, setRows] = useState({})
@@ -15,11 +16,27 @@ const Default = () => {
         // setRows(Create(DataTable1,"Tabla1"))
         // setTable2(Create(Apis.tableData2,"Tabla2"))
         let table = new Tables()
-        table.create("tabla1","tabla1",DataTable1,"tableDasbord","",true,true,true,true,true)
+        let single = new DropDowList()
+        let global = new DropDowList()
+        table.create("tabla1","tabla1",DataTable1,"tableDasbord")
+        table.setClasses('clasePrueba')
+        table.setStyles({width:"100%",background:"red"}) 
+        table.setPager([5,10,20,25])
+        table.setSearch()
+        table.setCheckbox()
         // table.create()
-        table.addActions('grupal','default',Editar,'Editar','warning',Edit)
-        table.addActions('grupal','default',Navbar,'Mostrar','success','mostrar')
-        table.addActions('grupal','custom','','Prueba','dark','Prueba',prueba)
+        // label, componente, grupal/indival (bool), custom/default(bool), data, icono, color
+        single.setList('', 'single', <MoreVert/>)
+        single.setItemList('Editar','/',<Edit/>,'',true,Editar)
+        single.setItemList('Mostrar','/','','',false)
+        single.setItemList('Prueba','','',prueba,false,'')
+        table.setSingleActions(single)
+        
+        global.setList('', 'global', <MoreVert/>)
+        global.setItemList('Editar','/',<Edit/>,'',false,Editar)
+        table.setGlobalActions(global)
+
+        // table.addActions('Editar',Editar,true,true,'',Edit,'warning')
         table.addCol("id","ID","/settings",true,"")
         table.addCol("name","Nombre","",true,"")
         table.addCol("status","Estatus","",true,"")
@@ -31,9 +48,8 @@ const Default = () => {
         setTable1(table)
 
         let table2 = new Tables()
-        table2.create("tabla2","tabla2",Apis.tableData2,"tableDasbord2","",true,true,true,true,true)
+        table2.create("","tabla2",Apis.tableData2,"tableDasbord2")
         // table2.create()
-        table2.actions(true,false,false)
         table2.addCol("id","ID","/settings",true,"")
         table2.addCol("name","Nombre","",true,"")
         table2.addCol("active","Activo","",true,"")

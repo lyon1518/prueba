@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+// import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { Search, Settings } from "@material-ui/icons";
@@ -23,6 +23,9 @@ import { Link } from 'react-router-dom';
 import SendData from '../pages/SendData';
 // import ValidateResponse from '../../scripts/validty/ValidateResponse';
 import SettingsTable from "./table/Settings";
+import DropDowList from './dropsdown/DropDownList';
+import Options from './table/Options';
+import Functions from "../../scripts/control/Functions";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -137,10 +140,14 @@ const useToolbarStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedTableToolbar = (props) => {
-  const [SettingsActive, setSettingsActive] = useState(false)
   const classes = useToolbarStyles();
   const { numSelected, title, rows, id, SettingsParams, DataTable } = props;
-  const { actionst } = DataTable
+  const { globalActions } = DataTable
+  let optionsTable = {}
+  optionsTable.component = Options
+  optionsTable.label = 'Configuración'
+  optionsTable.icon = <Settings />
+  // console.log(props);
 
   const searchB = () => {
     if (window.event.keyCode === 13 || window.event.type === "click") {
@@ -176,10 +183,7 @@ const EnhancedTableToolbar = (props) => {
         [classes.highlight]: numSelected > 0,
       }) + " bg-white text-white"}
     >
-      {SettingsActive ?
-        // console.log('aca', <SettingsTable/>)
-        <SettingsTable data={props} setSettingsActive={setSettingsActive} settings={SettingsParams} setSettingsParams={props.setSettingsParams} />
-        : ''}
+      
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
           {numSelected} Seleccionado
@@ -192,8 +196,8 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <div className={classes.dContents}>
-          {actionst.map((e, i) => {
-            if (e.grup === "grupal") {
+          {/* {actionst.map((e, i) => {
+            if (e.grup) {
               return (
                 <div key={"buttonA-" + i}>
                   <Tooltip title={e?.title} className={"ml-2 bg-" + e?.color} onClick={() => props.actionSelect(e)}>
@@ -206,24 +210,26 @@ const EnhancedTableToolbar = (props) => {
                   </Tooltip>
                 </div>
               )
-            }else{
-              return(<div key={"buttonA-" + i}></div>)
+            } else {
+              return (<div key={"buttonA-" + i}></div>)
             }
-          })}
+          })} */}
+          <DropDowList index={1} data={globalActions} actionSelect={props.actionSelect}/>
         </div>
       ) : (
-        SettingsParams[4] ?
+        SettingsParams[0] ?
           <div>
             <div className="input-group">
               <div className="input-group-prepend">
                 <button className="btn btn-primary" type="button" id="button-addon2" onClick={() => searchB()}><Search /></button>
               </div>
-              <input type="text" className="form-control hpx-40 sm" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" id={id} onKeyDown={() => searchB()} />
+              <input type="text" className="form-control hpx-40 sm" placeholder="Search"  id={id} onKeyDown={() => searchB()} />
             </div>
           </div> :
           ''
       )}
-      <div className="btn btn-sm btn-outline-info ml-2" onClick={() => setSettingsActive(true)}>
+      <div className="btn btn-sm btn-outline-info ml-2" onClick={() => props.actionSelect(optionsTable,SettingsParams)}>
+      {/* <div className="btn btn-sm btn-outline-info ml-2" onClick={() => setSettingsActive(true)}> */}
         {/* <i className="tio-delete-outlined"> */}
         <IconButton aria-label="Editar" className="sp">
           <Settings />
@@ -267,7 +273,7 @@ export default function EnhancedTable(props) {
   // console.log(props);
   const classes = useStyles();
   const { DataTable } = props
-  const { obj, name, checkbox, cols, id, search, background, controlPadding, action, paginador } = DataTable
+  const { obj, name, checkbox, cols, id, search, controlPadding, action, clase, styles,setPager,singleActions } = DataTable
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('calories');
   const [selected, setSelected] = useState([]);
@@ -279,8 +285,8 @@ export default function EnhancedTable(props) {
   const [Data, setData] = useState({})
   const [Actions, setActions] = useState(false)
   const [Component, setComponent] = useState(undefined)
-  const [SettingsParams, setSettingsParams] = useState([background, checkbox, controlPadding, paginador, search])
-  const { actionst } = DataTable
+  const [SettingsParams, setSettingsParams] = useState([search,checkbox,setPager!==undefined?true:undefined,clase!==undefined?true:undefined, styles!==undefined?true:undefined])
+  // const { actionst } = DataTable
 
   const AsigRows = useCallback((data) => {
     if (data === undefined) {
@@ -356,28 +362,28 @@ export default function EnhancedTable(props) {
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, row.length - page * rowsPerPage);
-    const actionSelect = (data) => {
-      if (data.action !== undefined) {
-        data.action()
-      }else{
-        setComponent(data)
-        setActions(true)
-      }
+    const actionSelect = (component,single) => {
+      let info = {}
+      info.data = single === undefined? selected:single
+      info.component = component
+      setComponent(info)
+      setActions(true)
     }
-
+    
     return (
       <div className={classes.root}>
         {Actions ?
-          <SettingsTable data={Component.component} setActions={setActions} selected={selected} actions={true} />
+          <SettingsTable data={Component} setActions={setActions} setSettingsParams={setSettingsParams}/>
           : ''}
         <Paper className={SettingsParams[0] ? classes.paper : 's-fondo'}>
           <EnhancedTableToolbar numSelected={selected.length} action={action} title={name} rows={obj} AsigRows={AsigRows} id={id} SettingsParams={SettingsParams} DataTable={DataTable} setSettingsParams={setSettingsParams} actionSelect={actionSelect} />
           <TableContainer>
             <Table
-              className={classes.table}
+              className={classes.tabl + ' ' + SettingsParams[3]?clase:''}
               aria-labelledby="tableTitle"
               size={controlPadding ? (dense ? 'small' : 'medium') : 'small'}
               aria-label="enhanced table"
+              style={SettingsParams[4]?styles:{}}
             >
               <EnhancedTableHead
                 classes={classes}
@@ -434,26 +440,13 @@ export default function EnhancedTable(props) {
                           )
                         })
                         }
-                        
+
                         {selected.length > 0 ?
                           selected.map((e, i) => {
                             if (row.id === e.id) {
                               return (
                                 <TableCell className="d-flex" key={'buttons' + i}>
-                                  {actionst.map((e, i) => {
-                                    return (
-                                      <div className="m-auto" key={"buttonA-" + i}>
-                                        <Tooltip title={e?.title} className={"ml-2 bg-" + e?.color} onClick={() => actionSelect(e)}>
-                                          {typeof e.icon === 'string' ?
-                                            <div className="btn text-white"><small>{e.icon}</small></div> :
-                                            <IconButton aria-label={e?.title} className="text-white">
-                                              <e.icon />
-                                            </IconButton>
-                                          }
-                                        </Tooltip>
-                                      </div>
-                                    )
-                                  })}
+                                  <DropDowList index={1} data={singleActions} dataRow={e} actionSelect={actionSelect}/>
                                 </TableCell>
                               )
                             } else {
@@ -472,9 +465,10 @@ export default function EnhancedTable(props) {
               </TableBody>
             </Table>
           </TableContainer>
-          {SettingsParams[3] ?
+          
+          {SettingsParams[2] ?
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
+              rowsPerPageOptions={Functions.WhatType(setPager) === undefined?[5, 10, 25]:setPager}
               component="div"
               count={obj.length}
               rowsPerPage={rowsPerPage}
@@ -485,7 +479,7 @@ export default function EnhancedTable(props) {
 
           }
         </Paper>
-        {SettingsParams[2] ?
+        {SettingsParams[8] ?
           <FormControlLabel
             control={<Switch checked={dense} onChange={handleChangeDense} />}
             label="Control de espaciado"

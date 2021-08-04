@@ -107,6 +107,12 @@ a{
     background-color: transparent;
     box-shadow: none;
 }
+.d-contents{
+    display: contents;
+}
+.d-unset{
+    display: unset;
+}
 @mixin sombra {
     min-width: 15rem;
     // background-color: #fff;

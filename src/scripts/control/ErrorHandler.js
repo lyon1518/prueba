@@ -16,7 +16,7 @@ const ErrorHandler = {
                 console.table(requireds);
             }
             var e = new Error(message);
-            console.log(e);
+            console.warn(e);
             return e
         }
     },
