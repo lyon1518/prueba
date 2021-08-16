@@ -84,7 +84,10 @@ const Basic = (props) => {
                                 {Tabs?.map((e, i) => {
                                     return (
                                         <li className="nav-item" key={'tabs' + i} onClick={() => setActiveTab(e.idTab)}>
-                                            <a className={i === 0 ? "nav-link active" : "nav-link"} id={e.idTab} data-toggle="pill" href={"#" + e.idContent} role="tab" aria-controls={e.idContent} aria-selected="true">{e.label}</a>
+                                            <a className={i === 0 ? "nav-link active" : "nav-link"} id={e.idTab} data-toggle="pill" href={"#" + e.idContent} role="tab" aria-controls={e.idContent} aria-selected="true">
+                                                {e.label}
+                                                {e.badge !== ''?e.badge:''}
+                                            </a>
                                         </li>
                                     )
                                 })}

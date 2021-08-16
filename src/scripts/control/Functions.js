@@ -34,7 +34,9 @@ const scritsGlobales = {
     return empty
   },
   erroServer(development, prod) {
-    let error = process.env.REACT_APP_SERVER === "DEVELOPER" ? development : prod
+    console.log(process.env);
+    let error = process.env.NODE_ENV === "development" ? development : prod
+    // let error = process.env.REACT_APP_SERVER === "development" ? development : prod
     return error
   }
 }

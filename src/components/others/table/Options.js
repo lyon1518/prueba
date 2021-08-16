@@ -7,6 +7,7 @@ const settings = [
     { id: 'stylesSettings', label: 'Estilos' },
 ]
 const Options = (props) => {
+    console.log(props);
     const handdleSave = ()=>{
         let arr = []
         let checks = document.querySelector('#OptionsSettings')

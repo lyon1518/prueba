@@ -8,7 +8,9 @@ const Settings = (props) => {
                 <div className="modal-content">
                     <div className="modal-header bg-white">
                         <h1 className="mt-2">
-                            <span className="mr-2">{component?.icon}</span>
+                            {component?.icon !== '' ?
+                                <span className={"mr-2 fa fa-" + component?.icon}></span>
+                                : ''}
                             {component?.label}
                         </h1>
                         <button onClick={() => props.setActions(false)} type="button" className="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
@@ -17,7 +19,7 @@ const Settings = (props) => {
                     </div>
                     <div className="modal-body">
                         {component?.component !== undefined ?
-                            < component.component data={data} setSettingsParams={props.setSettingsParams} close={props.setActions}/>
+                            < component.component data={data} setSettingsParams={props.setSettingsParams} close={props.setActions} />
                             : ''}
                     </div>
                     {/* <div className="modal-footer justify-content-start bg-white text-right">

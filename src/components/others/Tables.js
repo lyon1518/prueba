@@ -146,7 +146,7 @@ const EnhancedTableToolbar = (props) => {
   let optionsTable = {}
   optionsTable.component = Options
   optionsTable.label = 'Configuración'
-  optionsTable.icon = <Settings />
+  optionsTable.icon = 'cog'
   // console.log(props);
 
   const searchB = () => {

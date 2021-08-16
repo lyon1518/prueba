@@ -4,7 +4,6 @@ import TableComponent from "../../others/Tables";
 import Request from "../../../scripts/api/Request";
 import { Tables } from "../../../scripts/prototypes/Table";
 import Editar from "../../others/pop/Edit";
-import { Edit, MoreVert } from "@material-ui/icons";
 import DropDowList from "../../../scripts/prototypes/Layouts/DropDowList";
 
 const Default = () => {
@@ -26,14 +25,14 @@ const Default = () => {
         table.setCheckbox()
         // table.create()
         // label, componente, grupal/indival (bool), custom/default(bool), data, icono, color
-        single.setList('', 'single', <MoreVert/>)
-        single.setItemList('Editar','/',<Edit/>,'',true,Editar)
+        single.setList('list3', 'single', 'bars')
+        single.setItemList('Editar','/','edit','',true,Editar)
         single.setItemList('Mostrar','/','','',false)
         single.setItemList('Prueba','','',prueba,false,'')
         table.setSingleActions(single)
         
-        global.setList('', 'global', <MoreVert/>)
-        global.setItemList('Editar','/',<Edit/>,'',false,Editar)
+        global.setList('list4', 'global', 'bars')
+        global.setItemList('Editar','/','edit','',false,Editar)
         table.setGlobalActions(global)
 
         // table.addActions('Editar',Editar,true,true,'',Edit,'warning')
@@ -43,12 +42,13 @@ const Default = () => {
         table.addCol("type","Tipo","",true,"")
         table.addCol("email","Correo","",true,"")
         table.addCol("signed","Suscripción","",true,"")
+        
         table.validity(table)
         // console.log(table);
         setTable1(table)
 
         let table2 = new Tables()
-        table2.create("","tabla2",Apis.tableData2,"tableDasbord2")
+        table2.create("tabla2","tabla2",Apis.tableData2,"tableDasbord2")
         // table2.create()
         table2.addCol("id","ID","/settings",true,"")
         table2.addCol("name","Nombre","",true,"")

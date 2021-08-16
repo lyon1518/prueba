@@ -1,7 +1,8 @@
-function tabs(idTab, idContent, label, content, actions) {
+function tabs(idTab, idContent, label, badge, content, actions) {
     this.idTab = idTab
     this.idContent = idContent
     this.label = label
+    this.badge = badge
     this.content = content
     this.actions = actions
 }
@@ -56,7 +57,7 @@ class Layout {
         this.title.PageTitle = PageTitle
         this.title.ContentTitle = ContentTitle
     }
-    addNavItemLef(label, id, icon, url, action) {
+    addNavItemLeft(label, id, icon, url, action) {
         let navItem = new actionN(label, id, icon, url, action)
         let valid = this.validInfo({ 'id': id })
         if (valid.length > 0) {
@@ -74,7 +75,7 @@ class Layout {
             this.navRight.push(navItem)
         }
     }
-    addNavItemLefList(list) {
+    addNavItemLeftList(list) {
         if (list.error !== undefined) {
             this.error = list.error
         }
@@ -86,8 +87,8 @@ class Layout {
         }
         this.navRight.push(list.listOptions)
     }
-    addTabs(idTab, idContent, label, content, actions) {
-        let setTab = new tabs(idTab, idContent, label, content, actions)
+    addTabs(idTab, idContent, label, badge, content, actions) {
+        let setTab = new tabs(idTab, idContent, label, badge, content, actions)
         let valid = this.validInfo({ "idTab": idTab, "idContent": idContent, "label": label, "content": content })
         if (valid.length > 0) {
             this.error = new infoError('El tab no es valido', 'El campo ' + valid[0] + ' esta vacio o no fue definido')
