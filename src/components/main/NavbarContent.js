@@ -11,6 +11,7 @@ import NavLeft from "./NavLeft";
 import NavRight from "./pieces/NavRight";
 import Shadow from "./pieces/Shadow";
 import LayoutBasic from "../pages/Layouts/LayoutBasic";
+import GoogleLogin from "../pages/GoogleLogin";
 
 const NavbarContent = () => {
     const [store] = useContext(StoreContext)
@@ -28,6 +29,7 @@ const NavbarContent = () => {
                         <Route exact path='/' component={Default} />
                         <Route exact path='/settigs' component={Settings} />
                         <Route exact path='/layout' component={LayoutBasic} />
+                        <Route exact path='/prueba/callback' component={GoogleLogin} />
                     </Switch>
                     <Foter/>
                 </div>
