@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
+// import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import Login from "./components/pages/Login";
-import { StoreContext } from "./store/StoreProvider";
+// import { StoreContext } from "./store/StoreProvider";
 // import NavbarContent from "./components/main/NavbarContent";
 import GoogleLogin from "./components/pages/GoogleLogin";
 const RouterApp = () => {
-    const [store] = useContext(StoreContext)
-    const { sesion } = store
+    // const [store] = useContext(StoreContext)
+    // const { sesion } = store
     return (
         <BrowserRouter>
             {/* {sesion.SignIn ?
