@@ -26,10 +26,10 @@ const NavbarContent = () => {
             <main id="content" role="main" className="main pointer-event">
                 <div className="content container-fluid">
                     <Switch>
-                        <Route exact path='/' component={Default} />
+                        {/* <Route exact path='/' component={Default} /> */}
                         <Route exact path='/settigs' component={Settings} />
                         <Route exact path='/layout' component={LayoutBasic} />
-                        <Route exact path='/prueba/callback' component={GoogleLogin} />
+                        <Route exact path='/prueba' component={GoogleLogin} />
                     </Switch>
                     <Foter/>
                 </div>
